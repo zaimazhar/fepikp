@@ -8,6 +8,6 @@
 
   export default {
     name: 'Home',
-    props: ['title']
+    title: 'Home',
   }
 </script>

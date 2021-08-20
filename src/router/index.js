@@ -7,14 +7,12 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    meta: { title: "Home" },
     component: () => import('../views/Home.vue')
   },
   {
     path: '/courses',
     name: 'Courses',
-    meta: { title: "Courses" },
-    component: () => import('../views/Course.vue')
+    component: () => import('../views/Course.vue'),
   },
 ]
 
