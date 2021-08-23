@@ -33,6 +33,13 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
       <v-btn
+        href="/dashboard"
+        text
+      >
+        <span class="mr-2">Dashboard</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+      <v-btn
         text
       >
         <span class="mr-2">Login</span>
