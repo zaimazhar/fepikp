@@ -1,54 +1,104 @@
 <template>
   <v-app>
+    <v-system-bar color="deep-purple darken-1"></v-system-bar>
     <v-app-bar
       app
-      color="primary"
+      color="brown lighten-1"
       dark
+      :elevation="5"
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-      </div>
+    
+
+      <v-toolbar-title>My files</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="/"
-        text
-      >
-        <span class="mr-2">Home</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      <v-btn
-        href="/courses"
-        text
-      >
-        <span class="mr-2">Courses</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      <v-btn
-        href="/dashboard"
-        text
-      >
-        <span class="mr-2">Dashboard</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      <v-btn
-        text
-      >
-        <span class="mr-2">Login</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <div class="hidden-md-and-up">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      </div>
+      <div class="hidden-sm-and-down">
+        <v-btn
+          href="/"
+          text
+        >
+          <span class="mr-2">Home</span>
+        </v-btn>
+        <v-btn
+          href="/courses"
+          text
+        >
+          <span class="mr-2">Courses</span>
+        </v-btn>
+        <v-btn
+          href="/dashboard"
+          text
+        >
+          <span class="mr-2">Dashboard</span>
+        </v-btn>
+        <v-btn
+          text
+        >
+          <span class="mr-2">Login</span>
+        </v-btn>
+      </div>
     </v-app-bar>
+    <v-navigation-drawer
+          v-model="drawer"
+          absolute
+          right
+          temporary
+        >
+        <v-list
+          nav
+          dense
+        >
+          <v-list-item-group
+            v-model="group"
+            active-class="deep-purple--text blue-grey darken-1"
+          >
+            <v-list-item>
+              <v-list-item-title>
+                <v-btn
+                  href="/"
+                  text
+                >
+                  <span class="mr-2">Home</span>
+                </v-btn>
+              </v-list-item-title>
+            </v-list-item>
 
-    <v-main class="teal lighten-3">
-      <router-view />
+            <v-list-item>
+                <v-btn
+                  href="/courses"
+                  text
+                >
+              <v-list-item-title>
+                  <span class="mr-2">Courses</span>
+              </v-list-item-title>
+                </v-btn>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-title>Fizz</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-title>Buzz</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+        </v-navigation-drawer>
+    <v-main class="blue-grey lighten-2">
+      <v-container>
+        <v-card
+          color="brown lighten-1"
+          dark
+          :elevation="5"
+          pa-4
+          class="pa-5"
+        >
+          <router-view />
+        </v-card>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -58,7 +108,13 @@
 export default {
   name: 'App',
   data: () => ({
-    //
+    drawer: false,
+    group: null,
   }),
+  watch: {
+    group () {
+      this.drawer = false
+    },
+  },
 };
 </script>

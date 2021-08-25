@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <p class="text-center text-h4">Courses</p>
+    <h1 class="text-center">Courses</h1>
+    <br><br>
     <v-data-table
       :headers="headers"
       :items="desserts"
