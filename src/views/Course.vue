@@ -9,6 +9,19 @@
       class="elevation-1"
     >
     </v-data-table>
+    <br><br>
+    <v-btn
+      @click="login"
+      color="primary"
+    >
+      Login
+    </v-btn>
+    <v-btn
+      @click="checkConnection"
+      color="danger"
+    >
+      Check
+    </v-btn>
   </v-container>
 </template>
 
@@ -16,7 +29,19 @@
 
 export default {
   name: 'Course',
-  title: 'Courses'
+  title: 'Courses',
+  methods: {
+    login() {
+      fetch('http://localhost:3000/auth/login', {
+        method: 'post'
+      }).then( data => {
+        console.log(data)
+      }).catch( err => console.error(err))
+    },
+    checkConnection() {
+      fetch('http://localhost:3000/auth/check')
+    }
+  }
 }
 
 </script>
