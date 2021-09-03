@@ -9,7 +9,8 @@ export default {
   name: 'Dashboard',
   title: `Dashboard`,
   data: () => ({
-    username: 'zaimazhar97'
+    username: 'zaimazhar97',
+    age: 24
   })
 }
 </script>
