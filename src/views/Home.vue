@@ -1,41 +1,26 @@
 <template>
   <div>
-    <h1 class="text-center">Home</h1>
-    <div v-for="(product, i) in products" :key="i">
-      <p>{{ product.name }}</p>
-      <p>{{ product.price[currency].id }}</p>
-      <p>{{ currencyShow[currency] }} {{ product.price[currency].amount }}</p>
-    </div>
-    <div>
-      <p>{{ products[0].name }}</p>
-      <p>{{ currencyShow[currency] }} {{ products[0].price[currency].amount }}</p>
-      <v-btn
-        color="primary"
-        elevation="5"
-        @click="products[0].quantity++"
-      >+</v-btn>
-      <p>{{ products[0].quantity }}</p>
-      <v-btn
-        color="primary"
-        elevation="5"
-        @click="addToCart(products[0], currency)"
-      >Checkout</v-btn>
-    </div>
-    <div>
-      <p>{{ products[1].name }}</p>
-      <p>{{ currencyShow[currency] }} {{ products[1].price[currency].amount }}</p>
-      <v-btn
-        color="primary"
-        elevation="5"
-      >Checkout</v-btn>
-    </div>
-    <v-select
-      v-model="currency"
-      :items="items"
-      item-text="text"
-      item-value="value"
-      single-line
-    ></v-select>
+        <div class="deep-purple darken-4 pa-2" v-for="(sd, i) in standard" :key="i">
+            {{ sd.name }}
+            {{ sd.prices[currency].amount }}
+        </div><br>
+        <div class="deep-purple darken-4 pa-3">
+          <div v-for="(pk, i) in temp_packs" :key="i">
+              <p>{{ pk.name }}</p>
+              <p>{{ pk.prices[currency].amount }}</p>
+            <div v-if="!change">
+              <v-btn
+                @click="addProduct(pk)"
+              >Click Me</v-btn>
+            </div>
+            <div v-else>
+              <v-btn
+                disabled
+                @click="addProduct(pk)"
+              >Click Me</v-btn>
+            </div>
+          </div>
+        </div>
   </div>
 </template>
 <script>
@@ -53,52 +38,32 @@
         })
         
         console.log(this.cart)
+      },
+      addProduct(data) {
+        this.paxArray.forEach(element => {
+          if(element === data.productId) this.change = !this.change
+        });
+      },
+      removeProduct() {
+
       }
     },
     data: () => ({
+      paxArray: ['prod_K7JGbgvTzCOOqV', 'prod_K7Ixeh2rBTiJJF', 'prod_K7JLY1Z7rmrLwP', 'prod_K7JJW1Z0XrEPFT', 'prod_K7JCCHHddJeykK', 'prod_K7J1AGWv22luWH'],
+      change: false,
+      products: [],
+      standard: [],
+      temp_packs: [],
+      packs: [],
       cart: [],
       currency: 'myr',
-      currencyShow: {
-        "myr": "MYR",
-        "aud": "A$"
-      },
-      products: [{
-        name: "Tickets with Burgers",
-        price: {
-          "myr": {
-            id: "price_1JS0fDEM92XPtbH8l3dp4lAz",
-            amount: "50.00"
-          },
-          "aud": {
-            id: "price_1JS0fDEM92XPtbH84znUZSlf",
-            amount: "16.30"
-          }
-        },
-        quantity: 0
-      }, {
-        name: "Tickets",
-        price: {
-          "myr": {
-            id: "price_1JOn1UEM92XPtbH8FgPTpvZa",
-            amount: "30.00"
-          },
-          "aud": {
-            id: "price_1JRv7pEM92XPtbH81pUduNWm",
-            amount: "9.83"
-          }
-        },
-        quantity: 0
-      }],
-      items: [
-        {
-          text: 'MYR',
-          value: 'myr',
-        },
-        {
-          text: 'AUD',
-          value: 'aud',
-        },
-      ],
-    })
+      currCurrency: ''
+    }),
+    async created() {
+      this.products = (await this.$http.get('http://revivearcadeapi.ml/products')).data
+
+      this.standard = this.products.filter(product => product.currentTicketType.match("Standard"))
+      this.temp_packs = this.products.filter(product => !product.currentTicketType.match("Standard"))
+    }
   }
 </script>

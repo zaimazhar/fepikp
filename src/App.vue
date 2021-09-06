@@ -29,15 +29,22 @@
           <span class="mr-2">Courses</span>
         </v-btn>
         <v-btn
+          href="/login"
+          text
+        >
+          <span class="mr-2">Login</span>
+        </v-btn>
+        <v-btn
           href="/dashboard"
           text
         >
           <span class="mr-2">Dashboard</span>
         </v-btn>
         <v-btn
+          href="/signup"
           text
         >
-          <span class="mr-2">Login</span>
+          <span class="mr-2">Signup</span>
         </v-btn>
       </div>
     </v-app-bar>
