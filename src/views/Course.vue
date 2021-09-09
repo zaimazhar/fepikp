@@ -30,17 +30,16 @@
 export default {
   name: 'Course',
   title: 'Courses',
-  methods: {
-    login() {
-      fetch('http://localhost:3000/auth/login', {
-        method: 'post'
-      }).then( data => {
-        console.log(data)
-      }).catch( err => console.error(err))
-    },
-    checkConnection() {
-      fetch('http://localhost:3000/auth/check')
+  data() {
+    return {
+      data: [],
     }
+  },
+  methods() {
+
+  },
+  created() {
+    
   }
 }
 
