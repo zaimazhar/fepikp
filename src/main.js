@@ -5,15 +5,17 @@ import axios from 'axios'
 import vuetify from './plugins/vuetify'
 import titleMixin from './mixins/titleMixin'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import store from './store'
 
 import '@/assets/global.css'
 
 Vue.prototype.$http = axios
-
 Vue.config.productionTip = false
 Vue.mixin(titleMixin)
+
 new Vue({
-  router,
+  store,
   vuetify,
+  router,
   render: h => h(App)
 }).$mount('#app')

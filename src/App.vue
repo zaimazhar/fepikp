@@ -7,44 +7,19 @@
       dark
       :elevation="5"
     >
-    
-
       <v-toolbar-title>My files</v-toolbar-title>
-
       <v-spacer></v-spacer>
       <div class="hidden-md-and-up">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </div>
       <div class="hidden-sm-and-down">
         <v-btn
-          href="/"
+          v-for="link in links"
+          v-bind:key="link.id"
+          v-bind:href="link.href"
           text
         >
-          <span class="mr-2">Home</span>
-        </v-btn>
-        <v-btn
-          href="/courses"
-          text
-        >
-          <span class="mr-2">Courses</span>
-        </v-btn>
-        <v-btn
-          href="/login"
-          text
-        >
-          <span class="mr-2">Login</span>
-        </v-btn>
-        <v-btn
-          href="/dashboard"
-          text
-        >
-          <span class="mr-2">Dashboard</span>
-        </v-btn>
-        <v-btn
-          href="/signup"
-          text
-        >
-          <span class="mr-2">Signup</span>
+          <span class="mr-2">{{link.name}}</span>
         </v-btn>
       </div>
     </v-app-bar>
@@ -60,36 +35,11 @@
         >
           <v-list-item-group
             v-model="group"
-            active-class="deep-purple--text blue-grey darken-1"
+            active-class="deep-purple--text text--accent-4"
           >
-            <v-list-item>
-              <v-list-item-title>
-                <v-btn
-                  href="/"
-                  text
-                >
-                  <span class="mr-2">Home</span>
-                </v-btn>
-              </v-list-item-title>
-            </v-list-item>
-
-            <v-list-item>
-                <v-btn
-                  href="/courses"
-                  text
-                >
-              <v-list-item-title>
-                  <span class="mr-2">Courses</span>
-              </v-list-item-title>
-                </v-btn>
-            </v-list-item>
-
-            <v-list-item>
-              <v-list-item-title>Fizz</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item>
-              <v-list-item-title>Buzz</v-list-item-title>
+            <v-list-item v-for="link in links" v-bind:key="link.id" v-bind:href="link.href">
+              <v-list-item-title>{{ link.name }}</v-list-item-title>
+              
             </v-list-item>
           </v-list-item-group>
         </v-list>
@@ -117,6 +67,28 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
+    links: [
+      {
+        href: "/",
+        name: "Home"
+      },
+      {
+        href: "/courses",
+        name: "Courses"
+      },
+      {
+        href: "/login",
+        name: "Login"
+      },
+      {
+        href: "/signup",
+        name: "Signup"
+      },
+      {
+        href: "/dashboard",
+        name: "Dashboard"
+      }
+    ]
   }),
   watch: {
     group () {
