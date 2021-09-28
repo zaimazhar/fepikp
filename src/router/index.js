@@ -26,6 +26,10 @@ const routes = [
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/register/:id',
+    component: () => import('../views/Register.vue')
   }
 ]
 

@@ -47,8 +47,8 @@
 	import { mapGetters } from "vuex";
 
 	export default {
-		name: "Dashboard",
-		title: `Dashboard`,
+		name: "Log Masuk",
+		title: `Log Masuk`,
 		computed: mapGetters(["authState"]),
 		methods: {
 			changeState() {

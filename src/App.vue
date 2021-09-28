@@ -1,8 +1,14 @@
 <template>
 	<v-app>
 		<v-system-bar color="deep-purple darken-1"></v-system-bar>
-		<v-app-bar app color="blue-grey lighten-2" elevation="0" class="px-lg-16">
-			<v-toolbar-title>PIKP</v-toolbar-title>
+		<v-app-bar app color="blue-grey darken-1" elevation="0" class="px-lg-16" dark>
+			<v-img src="@/assets/PIKP.png" max-height="40" max-width="40"></v-img>
+			<v-toolbar-title class="pl-3" v-if="$vuetify.breakpoint.mdAndDown">
+				PIKP
+			</v-toolbar-title>
+			<v-toolbar-title class="pl-3" v-else>
+				PERSATUAN PENDIDIK ILMU IKHTISAS DAN KEMAHIRAN PEKERJAAN (PIKP)
+			</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<div class="hidden-md-and-up">
 				<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -13,7 +19,6 @@
 					v-bind:key="link.id"
 					v-bind:to="link.href"
 					text
-					class="text-lg"
 				>
 					<span class="mr-2">{{ link.name }}</span>
 				</v-btn>
@@ -64,7 +69,7 @@
 				</v-list-item-group>
 			</v-list>
 		</v-navigation-drawer>
-		<v-main class="blue-grey lighten-2 px-lg-16">
+		<v-main class="blue-grey darken-1 px-lg-16">
 			<router-view />
 		</v-main>
 	</v-app>
@@ -78,6 +83,7 @@
 		data: () => ({
 			drawer: false,
 			group: null,
+			titlePage: "PERSATUAN PENDIDIK ILMU IKHTISAS DAN KEMAHIRAN PEKERJAAN (PIKP)",
 			links: [
 				{
 					href: "/",
@@ -95,12 +101,14 @@
 				},
 			],
 		}),
-		computed: mapGetters(["authState"]),
+		computed: {
+			...mapGetters(["authState"]),
+		},
 		methods: {
 			async logout() {
-        this.$http.post('/logout', {
-          token: localStorage.getItem('jwt')
-        })
+				this.$http.post("/logout", {
+					token: localStorage.getItem("jwt"),
+				});
 				this.$store.dispatch("Logout");
 				this.$router.push("/");
 			},
