@@ -35,8 +35,8 @@
 					label="Alamat Email"
 					required
 				></v-text-field>
-				<v-btn class="mr-4" @click="loginUser()" :disabled="invalid">
-					Hantar
+				<v-btn color="blue" min-width="350" class="mr-4" @click="loginUser()" :disabled="invalid">
+					Log Masuk
 				</v-btn>
 			</v-form>
 		</v-card>

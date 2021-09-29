@@ -24,7 +24,29 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('../views/Dashboard.vue'),
+    children: [
+      {
+        path: 'program',
+        component: () => import('../views/admin/Create.vue')
+      },
+      {
+        path: 'edit/:id',
+        component: () => import('../views/admin/Edit.vue')
+      },
+      {
+        path: 'view/:id',
+        component: () => import('../views/admin/View.vue')
+      },
+      {
+        path: 'delete/:id',
+        component: () => import('../views/admin/Delete.vue')
+      },
+      {
+        path: 'home',
+        component: () => import('../views/admin/Home.vue')
+      },
+    ],
+    component: () => import('../views/admin/Dashboard.vue'),
     meta: { requiresAuth: true }
   },
   {

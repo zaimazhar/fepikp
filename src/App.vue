@@ -1,7 +1,13 @@
 <template>
 	<v-app>
-		<v-system-bar color="deep-purple darken-1"></v-system-bar>
-		<v-app-bar app color="blue-grey darken-1" elevation="0" class="px-lg-16" dark>
+		<v-system-bar color="blue-grey darken-4"></v-system-bar>
+		<v-app-bar
+			app
+			color="blue-grey darken-4"
+			elevation="0"
+			class="px-lg-16"
+			dark
+		>
 			<v-img src="@/assets/PIKP.png" max-height="40" max-width="40"></v-img>
 			<v-toolbar-title class="pl-3" v-if="$vuetify.breakpoint.mdAndDown">
 				PIKP
@@ -69,9 +75,17 @@
 				</v-list-item-group>
 			</v-list>
 		</v-navigation-drawer>
-		<v-main class="blue-grey darken-1 px-lg-16">
+		<v-main class="blue-grey darken-4 px-lg-16">
 			<router-view />
 		</v-main>
+		<v-footer padless color="blue-grey darken-4" dark>
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      PIKP <v-icon small>mdi-copyright</v-icon> {{ new Date().getFullYear() }}
+    </v-col>
+  </v-footer>
 	</v-app>
 </template>
 
@@ -83,7 +97,8 @@
 		data: () => ({
 			drawer: false,
 			group: null,
-			titlePage: "PERSATUAN PENDIDIK ILMU IKHTISAS DAN KEMAHIRAN PEKERJAAN (PIKP)",
+			titlePage:
+				"PERSATUAN PENDIDIK ILMU IKHTISAS DAN KEMAHIRAN PEKERJAAN (PIKP)",
 			links: [
 				{
 					href: "/",
