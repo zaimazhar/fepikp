@@ -26,6 +26,7 @@
           <v-btn class="ma-1" color="warning" v-bind:to="`/dashboard/edit/${program.id}`">Sunting</v-btn>
           <!-- <v-btn class="ma-1" color="red" dark v-bind:to="`/dashboard/delete/${program.id}`">Padam</v-btn> -->
         </v-col>
+				<v-divider></v-divider>
 			</v-row>
 		</v-card>
 	</v-card>

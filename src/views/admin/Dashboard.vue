@@ -47,8 +47,8 @@
 		methods: {},
 		data: () => ({
 			items: [
-				{ text: "Senarai Program", icon: "mdi-folder", to: "/dashboard/home" },
-				{ text: "Cipta Program", icon: "mdi-check-circle", to: "/dashboard/program" },
+				{ text: "Senarai Program", icon: "mdi-format-list-bulleted-square", to: "/dashboard/home" },
+				{ text: "Cipta Program", icon: "mdi-plus", to: "/dashboard/program" },
 			],
 		}),
 	};

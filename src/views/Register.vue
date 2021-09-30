@@ -162,9 +162,6 @@
 		<span v-else>
 			<v-row justify="center" align="center">
 				<v-card width="500" rounded="5" elevation="10" class="py-10 mx-3">
-					<!-- <v-toolbar color="blue" dark dense flat>
-						<v-toolbar-title class="text-body-1">Terima Kasih</v-toolbar-title>
-					</v-toolbar> -->
 					<v-card-text class="text-center">
 						<span class="display-1 font-weight-bold">Terima Kasih</span
 						><br /><br />
@@ -303,9 +300,9 @@
 						email: this.email,
 						addr1: this.addr1,
 						addr2: this.addr2,
+						postcode: this.postcode,
 						region: this.region,
 						state: this.state,
-						postcode: this.postcode,
 					};
 	
 					if (this.syarikat) {
@@ -316,9 +313,9 @@
 							companyAttention: this.companyAttention,
 							companyAddr1: this.companyAddr1,
 							companyAddr2: this.companyAddr2,
+							companyPostcode: this.companyPostcode,
 							companyRegion: this.companyRegion,
 							companyState: this.companyState,
-							companyPostcode: this.companyPostcode,
 						});
 					}
 	

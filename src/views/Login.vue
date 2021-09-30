@@ -13,26 +13,16 @@
 			></v-alert>
 			<v-form v-model="valid">
 				<v-text-field
-					v-model="firstname"
-					:rules="nameRules"
-					:counter="10"
-					label="Nama Pengguna"
+					v-model="auth"
+					label="Nama Pengguna / Email Pengguna"
 					required
 				></v-text-field>
 				<v-text-field
 					v-model="password"
-					:rules="[rules.required]"
 					:append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
 					:type="show ? 'text' : 'password'"
 					label="Kata Laluan"
 					@click:append="show = !show"
-					required
-				></v-text-field>
-
-				<v-text-field
-					v-model="email"
-					:rules="emailRules"
-					label="Alamat Email"
 					required
 				></v-text-field>
 				<v-btn color="blue" min-width="350" class="mr-4" @click="loginUser()" :disabled="invalid">
@@ -57,9 +47,8 @@
 			loginUser() {
 				this.$http
 					.post("/login", {
-						username: this.firstname,
+						auth: this.auth,
 						password: this.password,
-						email: this.email,
 					})
 					.then((user) => {
 						this.$store.dispatch("Login", user.data);
@@ -78,21 +67,8 @@
 			loginError: false,
 			errorMessage: "Butiran Pengguna Tidak Dijumpai",
 			show: false,
-			firstname: "",
+			auth: "",
 			password: "",
-			rules: {
-				required: (value) => !!value || "Kata Laluan Diperlukan.",
-			},
-			nameRules: [
-				(v) => !!v || "Nama Diperlukan",
-				(v) =>
-					v.length <= 10 || "Nama Tidak Boleh Lebih Dari 10 Patah Perkataan",
-			],
-			email: "",
-			emailRules: [
-				(v) => !!v || "Alamat Email Diperlukan",
-				(v) => /.+@.+/.test(v) || "Format Alamat Email Yang Salah",
-			],
 		}),
 	};
 </script>
