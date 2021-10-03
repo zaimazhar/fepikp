@@ -1,6 +1,6 @@
 <template>
-	<v-app>
-		<v-system-bar color="blue-grey darken-4"></v-system-bar>
+	<v-app class="bg-home">
+		<v-system-bar></v-system-bar>
 		<v-app-bar
 			app
 			color="blue-grey darken-4"
@@ -8,7 +8,7 @@
 			class="px-lg-16"
 			dark
 		>
-			<v-img src="@/assets/PIKP.png" max-height="40" max-width="40"></v-img>
+			<v-img src="@/assets/PIKP.png" max-height="45" max-width="45"></v-img>
 			<v-toolbar-title class="pl-3" v-if="$vuetify.breakpoint.mdAndDown">
 				PIKP
 			</v-toolbar-title>
@@ -40,10 +40,10 @@
 				</span>
 				<span v-else>
 					<v-btn to="/dashboard" text>
-						<span class="mr-2">Dashboard</span>
+						<span class="mr-2">Papan Pemuka</span>
 					</v-btn>
 					<v-btn @click="logout()" color="error" depressed>
-						<span class="mr-2">Logout</span>
+						<span class="mr-2">Log Keluar</span>
 					</v-btn>
 				</span>
 			</div>
@@ -62,20 +62,20 @@
 						<v-list-item-title>{{ link.name }}</v-list-item-title>
 					</v-list-item>
 					<v-list-item to="/login" v-if="!authState">
-						<v-list-item-title>Login</v-list-item-title>
+						<v-list-item-title>Log Masuk</v-list-item-title>
 					</v-list-item>
 					<span v-else>
 						<v-list-item to="/dashboard">
-							<v-list-item-title>Dashboard</v-list-item-title>
+							<v-list-item-title>Papan Pemuka</v-list-item-title>
 						</v-list-item>
 						<v-list-item @click="logout()">
-							<v-list-item-title>Logout</v-list-item-title>
+							<v-list-item-title>Log Keluar</v-list-item-title>
 						</v-list-item>
 					</span>
 				</v-list-item-group>
 			</v-list>
 		</v-navigation-drawer>
-		<v-main class="blue-grey darken-4 px-lg-16">
+		<v-main class="blue-grey darken-4">
 			<router-view />
 		</v-main>
 		<v-footer padless color="blue-grey darken-4" dark>
@@ -102,17 +102,21 @@
 			links: [
 				{
 					href: "/",
-					name: "Home",
+					name: "Laman Utama",
 				},
 				{
 					href: "/courses",
-					name: "Courses",
+					name: "Daftar Kos",
+				},
+				{
+					href: "/about",
+					name: "Tentang Kami",
 				},
 			],
 			processLinks: [
 				{
 					href: "/login",
-					name: "Login",
+					name: "Log Masuk",
 				},
 			],
 		}),
@@ -135,3 +139,9 @@
 		},
 	};
 </script>
+
+<style>
+.bg-home {
+    background-image: linear-gradient(135deg,#204666,#22313f);
+  }
+</style>
