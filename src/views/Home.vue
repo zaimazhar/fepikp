@@ -8,7 +8,7 @@
 						src="@/assets/PIKP.png"
 						max-height="500"
 						max-width="250"
-						transition="0.5s"
+						transition="0.4"
 					></v-img>
 				</v-row>
 			</v-col>
