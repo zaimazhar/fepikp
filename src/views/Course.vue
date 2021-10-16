@@ -1,30 +1,36 @@
 <template>
-	<v-container>
-		<h1 class="text-center white--text">Program</h1>
-		<br /><br />
-		<v-data-table
-			loading="true"
-			light
-			:headers="headers"
-			:items="courses"
-			:items-per-page="5"
-			class="elevation-1"
-			item-class="text-center"
-		>
-			<template v-slot:item.id="{ item }">
-				<v-btn
-					@click="setCourseName(item.courseName, item.id)"
-					color="green"
-					v-bind:value="item.id"
-					>Daftar</v-btn
+	<div>
+		<Base>
+			<v-container>
+				<h1 class="text-center white--text">Program</h1>
+				<br /><br />
+				<v-data-table
+					loading="true"
+					light
+					:headers="headers"
+					:items="courses"
+					:items-per-page="5"
+					class="elevation-1"
+					item-class="text-center"
 				>
-			</template>
-		</v-data-table>
-	</v-container>
+					<template v-slot:item.id="{ item }">
+						<v-btn
+							@click="setCourseName(item.courseName, item.id)"
+							color="green"
+							v-bind:value="item.id"
+							>Daftar</v-btn
+						>
+					</template>
+				</v-data-table>
+			</v-container>
+		</Base>
+	</div>
 </template>
 
 <script>
+	import Base from "./Base.vue";
 	export default {
+		components: { Base },
 		name: "Course",
 		title: "Program PIKP",
 		data: () => ({

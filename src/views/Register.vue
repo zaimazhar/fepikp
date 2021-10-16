@@ -1,193 +1,199 @@
 <template>
-	<v-container>
-		<span v-if="!success">
-			<v-card color="white" dark :elevation="5" class="pa-5">
-				<p class="display-1 blue--text my-5">{{ kosName }}</p>
-				<br />
-				<v-form class="blue--text" @submit="courseRegister">
-					<v-row>
-						<v-col cols="12" md="6">
-							<p class="headline">Maklumat Individu</p>
-							<v-text-field
-								v-for="(personal, index) in personals[0]"
-								v-bind:key="`A${index}`"
-								v-model="$data[personal.bind]"
-								v-bind:label="personal.label"
-								persistent-hint
-								v-bind:hint="personal.hint"
-								required
-								light
-								outlined
-								@keyup="uppercase()"
-								color="blue"
-								class="mb-5 black--text"
-							></v-text-field>
-						</v-col>
-						<v-col cols="12" md="6">
-							<p class="headline">
-								Maklumat Surat Menyurat (Penghantaran Sijil)
-							</p>
-							<v-text-field
-								v-for="(personal, index) in personals[1]"
-								v-bind:key="`B${index}`"
-								v-model="$data[personal.bind]"
-								v-bind:label="personal.label"
-								persistent-hint
-								v-bind:hint="personal.hint"
-								@keyup="uppercase()"
-								required
-								outlined
-								light
-								color="blue"
-								class="mb-5"
-							></v-text-field>
-							<v-autocomplete
-								v-for="(pilih, index) in pilihSendiri[0]"
-								v-bind:key="`C${index}`"
-								v-bind:label="pilih.label"
-								v-bind:items="$data[pilih.kategori]"
-								:loading="loading[0]"
-								required
-								outlined
-								loader-height="3"
-								filled
-								light	
-								return-object
-								item-text="name"
-								class="mb-5"
-								color="blue"
-								@change="populate($event, pilih.kelas)"
-							></v-autocomplete>
-							<v-autocomplete
-								label="Poskod"
-								:loading="loading[2]"
-								:items="postcodeSendiri"
-								filled
-								light
-								return-object
-								outlined
-								color="blue"
-								@change="poskod($event, 'p1')"
-							></v-autocomplete>
-						</v-col>
-					</v-row>
-					<v-row justify="center" align="center">
-						<v-switch
-							v-model="syarikat"
-							inset
-							light
-							v-bind:label="syarikat ? 'Syarikat' : 'Persendirian'"
-							color="blue	"
-						></v-switch>
-					</v-row>
-					<span v-if="syarikat">
+	<div>
+		<Base>
+			<v-container>
+				<span v-if="!success">
+					<v-card color="white" dark :elevation="5" class="pa-5">
+						<p class="display-1 blue--text my-5">{{ kosName }}</p>
 						<br />
-						<v-row>
-							<v-col cols="12" md="6">
-								<p class="headline">Maklumat Syarikat</p>
-								<v-text-field
-									v-for="(syarikat, index) in syarikats[0]"
-									v-bind:key="`D${index}`"
-									v-model="$data[syarikat.bind]"
-									v-bind:label="syarikat.label"
-									persistent-hint
-									v-bind:hint="syarikat.hint"
+						<v-form class="blue--text" @submit="courseRegister">
+							<v-row>
+								<v-col cols="12" md="6">
+									<p class="headline">Maklumat Individu</p>
+									<v-text-field
+										v-for="(personal, index) in personals[0]"
+										v-bind:key="`A${index}`"
+										v-model="$data[personal.bind]"
+										v-bind:label="personal.label"
+										persistent-hint
+										v-bind:hint="personal.hint"
+										required
+										light
+										outlined
+										@keyup="uppercase()"
+										color="blue"
+										class="mb-5 black--text"
+									></v-text-field>
+								</v-col>
+								<v-col cols="12" md="6">
+									<p class="headline">
+										Maklumat Surat Menyurat (Penghantaran Sijil)
+									</p>
+									<v-text-field
+										v-for="(personal, index) in personals[1]"
+										v-bind:key="`B${index}`"
+										v-model="$data[personal.bind]"
+										v-bind:label="personal.label"
+										persistent-hint
+										v-bind:hint="personal.hint"
+										@keyup="uppercase()"
+										required
+										outlined
+										light
+										color="blue"
+										class="mb-5"
+									></v-text-field>
+									<v-autocomplete
+										v-for="(pilih, index) in pilihSendiri[0]"
+										v-bind:key="`C${index}`"
+										v-bind:label="pilih.label"
+										v-bind:items="$data[pilih.kategori]"
+										:loading="loading[0]"
+										required
+										outlined
+										loader-height="3"
+										filled
+										light
+										return-object
+										item-text="name"
+										class="mb-5"
+										color="blue"
+										@change="populate($event, pilih.kelas)"
+									></v-autocomplete>
+									<v-autocomplete
+										label="Poskod"
+										:loading="loading[2]"
+										:items="postcodeSendiri"
+										filled
+										light
+										return-object
+										outlined
+										color="blue"
+										@change="poskod($event, 'p1')"
+									></v-autocomplete>
+								</v-col>
+							</v-row>
+							<v-row justify="center" align="center">
+								<v-switch
+									v-model="syarikat"
+									inset
 									light
-									@keyup="uppercase()"
-									outlined
-									color="blue"
-									class="mb-5"
-								></v-text-field>
-							</v-col>
-							<v-col cols="12" md="6">
-								<p class="headline">Maklumat Surat Menyurat (Syarikat)</p>
-								<v-text-field
-									v-for="(syarikat, index) in syarikats[1]"
-									v-bind:key="`E${index}`"
-									v-model="$data[syarikat.bind]"
-									v-bind:label="syarikat.label"
-									persistent-hint
-									light
-									v-bind:hint="syarikat.hint"
-									@keyup="uppercase()"
-									required
-									outlined
-									color="blue"
-									class="mb-5"
-								></v-text-field>
-								<v-autocomplete
-									v-for="(pilih, index) in pilihSendiri[1]"
-									v-bind:key="`F${index}`"
-									v-bind:label="pilih.label"
-									v-bind:items="$data[pilih.kategori]"
-									:loading="loading[1]"
-									required
-									outlined
-									filled
-									light
-									return-object
-									class="mb-5"
-									item-text="name"
-									color="blue"
-									@change="populate($event, pilih.kelas)"
-								></v-autocomplete>
-								<v-autocomplete
-									label="Poskod"
-									:loading="loading[3]"
-									:items="postcodeSyarikat"
-									filled
-									light
-									return-object
-									outlined
-									color="blue"
-									@change="poskod($event, 'p2')"
-								></v-autocomplete>
-							</v-col>
-						</v-row>
-					</span>
-					<span v-else class="mb-4 pb-4"></span>
-					<v-row
-						justify="center"
-						align="center"
-						class="mb-6"
-						v-bind:class="syarikat ? '' : 'mt-5'"
-					>
-						<v-btn type="submit" color="blue" min-width="500" large>
-							HANTAR
-						</v-btn>
+									v-bind:label="syarikat ? 'Syarikat' : 'Persendirian'"
+									color="blue	"
+								></v-switch>
+							</v-row>
+							<span v-if="syarikat">
+								<br />
+								<v-row>
+									<v-col cols="12" md="6">
+										<p class="headline">Maklumat Syarikat</p>
+										<v-text-field
+											v-for="(syarikat, index) in syarikats[0]"
+											v-bind:key="`D${index}`"
+											v-model="$data[syarikat.bind]"
+											v-bind:label="syarikat.label"
+											persistent-hint
+											v-bind:hint="syarikat.hint"
+											light
+											@keyup="uppercase()"
+											outlined
+											color="blue"
+											class="mb-5"
+										></v-text-field>
+									</v-col>
+									<v-col cols="12" md="6">
+										<p class="headline">Maklumat Surat Menyurat (Syarikat)</p>
+										<v-text-field
+											v-for="(syarikat, index) in syarikats[1]"
+											v-bind:key="`E${index}`"
+											v-model="$data[syarikat.bind]"
+											v-bind:label="syarikat.label"
+											persistent-hint
+											light
+											v-bind:hint="syarikat.hint"
+											@keyup="uppercase()"
+											required
+											outlined
+											color="blue"
+											class="mb-5"
+										></v-text-field>
+										<v-autocomplete
+											v-for="(pilih, index) in pilihSendiri[1]"
+											v-bind:key="`F${index}`"
+											v-bind:label="pilih.label"
+											v-bind:items="$data[pilih.kategori]"
+											:loading="loading[1]"
+											required
+											outlined
+											filled
+											light
+											return-object
+											class="mb-5"
+											item-text="name"
+											color="blue"
+											@change="populate($event, pilih.kelas)"
+										></v-autocomplete>
+										<v-autocomplete
+											label="Poskod"
+											:loading="loading[3]"
+											:items="postcodeSyarikat"
+											filled
+											light
+											return-object
+											outlined
+											color="blue"
+											@change="poskod($event, 'p2')"
+										></v-autocomplete>
+									</v-col>
+								</v-row>
+							</span>
+							<span v-else class="mb-4 pb-4"></span>
+							<v-row
+								justify="center"
+								align="center"
+								class="mb-6"
+								v-bind:class="syarikat ? '' : 'mt-5'"
+							>
+								<v-btn type="submit" color="blue" min-width="500" large>
+									HANTAR
+								</v-btn>
+							</v-row>
+						</v-form>
+					</v-card>
+				</span>
+				<span v-else>
+					<v-row justify="center" align="center">
+						<v-card width="500" rounded="5" elevation="10" class="py-10 mx-3">
+							<v-card-text class="text-center">
+								<span class="display-1 font-weight-bold">Terima Kasih</span
+								><br /><br />
+								<v-icon color="green" size="100">
+									mdi-check-circle-outline </v-icon
+								><br /><br />
+								<span class="headline font-weight-bold">{{ kosName }}</span
+								><br /><br />
+								<span class="title"
+									>Email pengesahan pendaftaran akan dihantar ke alamat email
+									<strong>{{ email }}</strong></span
+								> </v-card-text
+							><br />
+							<v-card-actions class="text-center">
+								<v-row justify="center" align="center">
+									<v-btn large color="green" dark to="/">Terus</v-btn>
+								</v-row>
+							</v-card-actions>
+						</v-card>
 					</v-row>
-				</v-form>
-			</v-card>
-		</span>
-		<span v-else>
-			<v-row justify="center" align="center">
-				<v-card width="500" rounded="5" elevation="10" class="py-10 mx-3">
-					<v-card-text class="text-center">
-						<span class="display-1 font-weight-bold">Terima Kasih</span
-						><br /><br />
-						<v-icon color="green" size="100">
-							mdi-check-circle-outline </v-icon
-						><br /><br />
-						<span class="headline font-weight-bold">{{ kosName }}</span
-						><br /><br />
-						<span class="title"
-							>Email pengesahan pendaftaran akan dihantar ke alamat email
-							<strong>{{ email }}</strong></span
-						>
-					</v-card-text><br>
-					<v-card-actions class="text-center">
-						<v-row justify="center" align="center">
-							<v-btn large color="green" dark to="/">Terus</v-btn>
-						</v-row>
-					</v-card-actions>
-				</v-card>
-			</v-row>
-		</span>
-	</v-container>
+				</span>
+			</v-container>
+		</Base>
+	</div>
 </template>
 
 <script>
+	import Base from "./Base.vue";
 	export default {
+		components: { Base },
 		data: () => ({
 			success: false,
 			search: "",
@@ -304,7 +310,7 @@
 						region: this.region,
 						state: this.state,
 					};
-	
+
 					if (this.syarikat) {
 						Object.assign(data, {
 							companyName: this.companyName,
@@ -318,11 +324,11 @@
 							companyState: this.companyState,
 						});
 					}
-	
+
 					this.$http.post("/course/register", data);
-					this.success = true
-				} catch(err) {
-					console.error(err)
+					this.success = true;
+				} catch (err) {
+					console.error(err);
 				}
 			},
 			async populate(a, check) {
@@ -392,7 +398,7 @@
 			},
 		},
 		beforeRouteLeave(to, from, next) {
-			if(this.success) next()
+			if (this.success) next();
 			else {
 				if (window.confirm("Anda Pasti Mahu Batalkan Pendaftaran Ini?")) {
 					this.$store.dispatch("ClearCourse");
