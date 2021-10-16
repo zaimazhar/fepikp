@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: "/",
+		name: "SHEPro Home",
 		component: () => import("../views/Home.vue"),
 	},
 	{
@@ -15,63 +16,55 @@ const routes = [
 	},
 	{
 		path: "/contact",
-		name: "SHEPro Home",
 		component: () => import("../views/Contact.vue"),
 	},
 	{
 		path: "/register/:id",
 		component: () => import("../views/Register.vue"),
 	},
-	// {
-	// 	path: "/pikp",
-	// 	name: "PIKP Home",
-	// 	component: () => import("../views/pikp/Home.vue"),
-	// 	children: [
-	// 		{
-	// 			path: "/dashboard",
-	// 			name: "Dashboard",
-	// 			children: [
-	// 				{
-	// 					path: "program",
-	// 					component: () => import("../views/admin/Create.vue"),
-	// 				},
-	// 				{
-	// 					path: "edit/:id",
-	// 					component: () => import("../views/admin/Edit.vue"),
-	// 				},
-	// 				{
-	// 					path: "view/:id",
-	// 					component: () => import("../views/admin/View.vue"),
-	// 				},
-	// 				{
-	// 					path: "delete/:id",
-	// 					component: () => import("../views/admin/Delete.vue"),
-	// 				},
-	// 				{
-	// 					path: "home",
-	// 					component: () => import("../views/admin/Home.vue"),
-	// 				},
-	// 			],
-	// 			component: () => import("../views/admin/Dashboard.vue"),
-	// 			meta: { requiresAuth: true },
-	// 		},
-	// 		{
-	// 			path: "/courses",
-	// 			name: "Courses",
-	// 			component: () => import("../views/pikp/Course.vue"),
-	// 		},
-	// 		{
-	// 			path: "/login",
-	// 			name: "login",
-	// 			component: () => import("../views/pikp/Login.vue"),
-	// 		},
-	// 		{
-	// 			path: "/about",
-	// 			name: "about",
-	// 			component: () => import("../views/pikp/About.vue"),
-	// 		},
-	// 	],
-	// },
+	{
+		path: "/login",
+		component: () => import("../views/Login.vue")
+	},
+	{
+		path: "/dashboard",
+		children: [
+			{
+				path: "program",
+				component: () => import("../views/admin/Create.vue"),
+			},
+			{
+				path: "edit/:id",
+				component: () => import("../views/admin/Edit.vue"),
+			},
+			{
+				path: "view/:id",
+				component: () => import("../views/admin/View.vue"),
+			},
+			{
+				path: "delete/:id",
+				component: () => import("../views/admin/Delete.vue"),
+			},
+			{
+				path: "home",
+				component: () => import("../views/admin/Home.vue"),
+			},
+		],
+		component: () => import("../views/admin/Dashboard.vue"),
+		meta: { requiresAuth: true },
+	},
+	{
+		path: "/pikp",
+		name: "PIKP Home",
+		component: () => import("../views/pikp/Home.vue"),
+		children: [
+			{
+				path: "/about",
+				name: "about",
+				component: () => import("../views/pikp/About.vue"),
+			},
+		],
+	},
 ];
 
 const router = new VueRouter({

@@ -50,6 +50,10 @@
 				"SHEPro Training and Consultancy",
 			links: [
 				{
+					href: "/pikp",
+					name: "PIKP",
+				},
+				{
 					href: "/",
 					name: "Laman Utama",
 				},
@@ -61,6 +65,10 @@
 					href: "/contact",
 					name: "Hubungi Kami",
 				},
+				{
+					href: "/login",
+					name: "Log Masuk"
+				}
 			]
 		}),
 		watch: {

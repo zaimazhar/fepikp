@@ -28,7 +28,7 @@
 				>
 					<span class="mr-2">{{ link.name }}</span>
 				</v-btn>
-				<span v-if="!authState">
+				<!-- <span v-if="!authState">
 					<v-btn
 						v-for="link in processLinks"
 						v-bind:key="link.id"
@@ -45,7 +45,7 @@
 					<v-btn @click="logout()" color="error" depressed>
 						<span class="mr-2">Log Keluar</span>
 					</v-btn>
-				</span>
+				</span> -->
 			</div>
 		</v-app-bar>
 		<v-navigation-drawer v-model="drawer" absolute right temporary>
@@ -61,7 +61,7 @@
 					>
 						<v-list-item-title>{{ link.name }}</v-list-item-title>
 					</v-list-item>
-					<v-list-item to="/login" v-if="!authState">
+					<!-- <v-list-item to="/login" v-if="!authState">
 						<v-list-item-title>Log Masuk</v-list-item-title>
 					</v-list-item>
 					<span v-else>
@@ -71,7 +71,7 @@
 						<v-list-item @click="logout()">
 							<v-list-item-title>Log Keluar</v-list-item-title>
 						</v-list-item>
-					</span>
+					</span> -->
 				</v-list-item-group>
 			</v-list>
 		</v-navigation-drawer>
@@ -93,20 +93,16 @@
 					name: "Laman Utama",
 				},
 				{
-					href: "/pikp/courses",
-					name: "Daftar Kos",
-				},
-				{
 					href: "/pikp/about",
 					name: "Tentang Kami",
 				},
 			],
-			processLinks: [
-				{
-					href: "/pikp/login",
-					name: "Log Masuk",
-				},
-			],
+			// processLinks: [
+			// 	{
+			// 		href: "/pikp/login",
+			// 		name: "Log Masuk",
+			// 	},
+			// ],
 		}),
 		computed: {
 			...mapGetters(["authState"]),
