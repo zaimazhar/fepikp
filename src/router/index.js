@@ -55,15 +55,28 @@ const routes = [
 	},
 	{
 		path: "/pikp",
-		name: "PIKP Home",
-		component: () => import("../views/pikp/Home.vue"),
+		redirect: {
+			name: "PIKPHome"
+		}
+	},
+	{
+		path: "/pikp",
 		children: [
 			{
-				path: "/about",
-				name: "about",
+				path: "home",
+				name: "PIKPHome",
+				component: () => import("../views/pikp/Home.vue")
+			},
+			{
+				path: "about",
 				component: () => import("../views/pikp/About.vue"),
 			},
+			{
+				path: "activity",
+				component: () => import("../views/pikp/Activity.vue"),
+			},
 		],
+		component: () => import("../views/pikp/Base.vue"),
 	},
 ];
 

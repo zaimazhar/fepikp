@@ -2,7 +2,7 @@
 	<v-app>
 		<PIKPNavbar />
 		<v-main class="bg-sky">
-			<slot />
+			<router-view />
 		</v-main>
 		<PIKPFooter />
 	</v-app>
@@ -18,6 +18,6 @@
 
 <style>
   .bg-sky { 
-    background-color: #273c75;
+    background-image: linear-gradient(135deg, #204666, #22313f);
   }
 </style>>

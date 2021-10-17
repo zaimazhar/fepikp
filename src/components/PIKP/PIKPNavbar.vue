@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<v-system-bar></v-system-bar>
 		<v-app-bar
 			app
-			color="blue-grey darken-4"
-			elevation="0"
+			color="transparent"
+			elevation="2"
+			elevate-on-scroll
 			class="px-lg-16"
 			dark
 		>
@@ -89,8 +89,16 @@
 				"PERSATUAN PENDIDIK ILMU IKHTISAS DAN KEMAHIRAN PEKERJAAN (PIKP)",
 			links: [
 				{
-					href: "/pikp",
+					href: "/",
+					name: "SHEPro",
+				},
+				{
+					href: "/pikp/home",
 					name: "Laman Utama",
+				},
+				{
+					href: "/pikp/activity",
+					name: "Aktiviti PIKP",
 				},
 				{
 					href: "/pikp/about",
@@ -126,6 +134,6 @@
 
 <style>
 	.bg-home {
-		background-image: linear-gradient(135deg, #204666, #22313f);
+		background-color: #22313f;
 	}
 </style>
