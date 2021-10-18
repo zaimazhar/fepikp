@@ -52,7 +52,7 @@
 			<v-list nav dense>
 				<v-list-item-group
 					v-model="group"
-					active-class="deep-purple--text text--accent-4"
+					active-class="blue--text text--accent-4"
 				>
 					<v-list-item
 						v-for="link in links"

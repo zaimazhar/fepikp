@@ -9,5 +9,10 @@
 </script>
 
 <style>
-
+	* {
+		font-family: 'Roboto', sans-serif;
+	}
+	html {
+		font-family: 'Roboto', sans-serif;
+	}
 </style>

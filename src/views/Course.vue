@@ -2,7 +2,7 @@
 	<div>
 		<Base>
 			<v-container>
-				<h1 class="text-center white--text">Program</h1>
+				<h1 class="text-center main">Program</h1>
 				<br /><br />
 				<v-data-table
 					loading="true"
@@ -94,4 +94,8 @@
 	};
 </script>
 
-<style></style>
+<style>
+	.main {
+		color: #30336b;
+	}
+</style>
