@@ -295,7 +295,7 @@
 				this.companyAddr1 = this.companyAddr1.toUpperCase();
 				this.companyAddr2 = this.companyAddr2.toUpperCase();
 			},
-			courseRegister(e) {
+			async courseRegister(e) {
 				e.preventDefault();
 				try {
 					const data = {
@@ -325,8 +325,9 @@
 						});
 					}
 
-					this.$http.post("/course/register", data);
-					this.success = true;
+					this.$http.post("/course/register", data)
+					.then( () => this.success = true)
+					.reject( err => { throw new Error(err) })
 				} catch (err) {
 					console.error(err);
 				}
