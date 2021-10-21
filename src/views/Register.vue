@@ -3,8 +3,8 @@
 		<Base>
 			<v-container>
 				<span v-if="!success">
+					<p class="display-1 text-center font-weight-medium kos my-5">{{ kosName }}</p>
 					<v-card color="white" dark :elevation="5" class="pa-5">
-						<p class="display-1 blue--text my-5">{{ kosName }}</p>
 						<br />
 						<v-form class="blue--text" @submit="courseRegister">
 							<v-row>
@@ -415,3 +415,8 @@
 		},
 	};
 </script>
+<style scoped>
+	.kos {
+		color: #273c75;
+	}
+</style>
