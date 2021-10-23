@@ -117,9 +117,7 @@
 		},
 		methods: {
 			async logout() {
-				this.$http.post("/logout", {
-					token: localStorage.getItem("jwt"),
-				});
+				this.$http.post("/logout");
 				this.$store.dispatch("Logout");
 				this.$router.push("/");
 			},

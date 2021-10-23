@@ -62,7 +62,6 @@
 					})
 					.then((user) => {
 						this.$store.dispatch("Login", user.data);
-						console.log(user.data);
 						this.$router.replace("/dashboard");
 					})
 					.catch((err) => {

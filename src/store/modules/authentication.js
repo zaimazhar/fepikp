@@ -1,7 +1,8 @@
+import router from "../../router";
 
 const state = {
-	auth: !!localStorage.getItem("jwt"),
-	token: localStorage.getItem("jwt") ?? "",
+	auth: !!localStorage.getItem("token"),
+	token: localStorage.getItem("token") ?? "",
 };
 
 const getters = {
@@ -10,12 +11,13 @@ const getters = {
 
 const actions = {
 	Login({ commit }, userData) {
-		localStorage.setItem("jwt", userData.token);
+		localStorage.setItem("token", userData.token);
 		commit("LOGIN", userData.token);
 	},
 	Logout({ commit }) {
-		localStorage.removeItem("jwt");
+		localStorage.removeItem("token");
 		commit("LOGOUT");
+		router.replace('/')
 	},
 };
 
