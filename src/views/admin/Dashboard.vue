@@ -1,7 +1,8 @@
 <template>
 	<v-app>
-		<v-main class="yellow">
+		<v-main class="dash">
 			<v-container class="py-10">
+				<Authbar /><br>
 				<v-row>
 					<Navbar />
 					<v-col>
@@ -21,16 +22,18 @@
 
 <script>
 	import Navbar from "../../components/Admin/Navbar.vue";
+	import Authbar from "../../components/Admin/Authbar.vue";
 
 	export default {
 		components: {
 			Navbar,
+			Authbar,
 		},
 	};
 </script>
 
 <style scoped>
-	.yellow {
-		background: rgb(180, 56, 56);
+	.dash {
+		background: rgb(180, 56, 56, 0.7);
 	}
 </style>

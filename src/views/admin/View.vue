@@ -1,5 +1,12 @@
 <template>
-	<v-data-table :items-per-page="10" :headers="headers" :items="pesertas" class="elevation-5"></v-data-table>
+	<div>
+		<v-data-table
+			:items-per-page="10"
+			:headers="headers"
+			:items="pesertas"
+			class="elevation-5"
+		></v-data-table>
+	</div>
 </template>
 
 <script>
@@ -20,7 +27,9 @@
 				.then((participants) => {
 					const data = participants.data;
 					data.map((participant) => {
-						participant.participantAddress = Object.values(participant.participantAddress)
+						participant.participantAddress = Object.values(
+							participant.participantAddress
+						)
 							.filter((data) => data.length > 1)
 							.join(", ");
 					});

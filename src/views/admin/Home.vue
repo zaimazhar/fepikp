@@ -19,28 +19,66 @@
 			<v-col cols="12" sm="2">{{ program.courseCost }}</v-col>
 			<v-col cols="12" sm="2">{{ program.courseVenue }}</v-col>
 			<v-col cols="12" sm="2">
-				<v-btn
-					class="ma-1"
-					color="primary"
-					v-bind:to="`/dashboard/view/${program.id}`"
-					>Lihat</v-btn
-				>
-				<v-btn
-					class="ma-1"
-					color="warning"
-					v-bind:to="`/dashboard/edit/${program.id}`"
-					>Sunting</v-btn
-				>
-				<v-btn
-					class="ma-1"
-					color="red"
-					dark
-					v-bind:to="`/dashboard/delete/${program.id}`"
-					>Padam</v-btn
-				>
+				<v-tooltip top>
+					<template v-slot:activator="{ on, attrs }">
+						<router-link :to="`/dashboard/view/${program.id}`">
+							<v-icon color="primary" dark v-bind="attrs" v-on="on">
+								mdi-eye
+							</v-icon>
+						</router-link>
+					</template>
+					<span>Senarai Pendaftar</span>
+				</v-tooltip>
+				<v-tooltip top>
+					<template v-slot:activator="{ on, attrs }">
+						<router-link :to="`/dashboard/edit/${program.id}`">
+							<v-icon color="green" dark v-bind="attrs" v-on="on">
+								mdi-pencil
+							</v-icon>
+						</router-link>
+					</template>
+					<span>Sunting Program</span>
+				</v-tooltip>
+				<v-tooltip top>
+					<template v-slot:activator="{ on, attrs }">
+						<v-icon
+							color="red"
+							dark
+							v-bind="attrs"
+							v-on="on"
+							@click="promptDelete(program.id)"
+						>
+							mdi-delete
+						</v-icon>
+					</template>
+					<span>Padam Program</span>
+				</v-tooltip>
 			</v-col>
 			<v-divider></v-divider>
 		</v-row>
+		<v-dialog v-model="dialog" max-width="290">
+			<v-card>
+				<v-card-title class="text-h5">
+					Delete?
+				</v-card-title>
+
+				<v-card-text>
+					The program will be permanently deleted
+				</v-card-text>
+
+				<v-card-actions>
+					<v-spacer></v-spacer>
+
+					<v-btn color="red" dark @click="deleteId()">
+						Yes
+					</v-btn>
+
+					<v-btn color="gray" dark @click="dialog = false">
+						No
+					</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</div>
 </template>
 
@@ -49,6 +87,8 @@
 		title: "Laman Utama",
 		data: () => ({
 			programs: [],
+			dialog: false,
+			tempId: '',
 		}),
 		methods: {
 			async getPrograms() {
@@ -69,7 +109,15 @@
 					this.programs = data;
 				});
 
-				console.log(this.programs);
+				// console.log(this.programs);
+			},
+			promptDelete(id) {
+				this.dialog = true
+				this.tempId = id
+			},
+			deleteId() {
+				console.log(`Deleted: ${this.tempId}`);
+				this.dialog = false
 			},
 		},
 		created() {
@@ -78,4 +126,9 @@
 	};
 </script>
 
-<style></style>
+<style scoped>
+	a {
+		text-decoration: none;
+		margin: 0 3px 0 3px;
+	}
+</style>
