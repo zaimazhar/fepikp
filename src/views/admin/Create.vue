@@ -1,7 +1,7 @@
 <template>
-	<v-card light :elevation="5" pa-4 class="pa-5">
+	<div>
 		<v-form @submit="createProgram">
-			<v-text-field label="Nama Program" v-model="courseName"></v-text-field>
+			<v-text-field outlined label="Nama Program" v-model="courseName"></v-text-field>
 			<br />
 			<v-row>
 				<v-col cols="12" sm="6">
@@ -146,11 +146,12 @@
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
-	</v-card>
+	</div>
 </template>
 
 <script>
 	export default {
+		title: "Cipta Program",
 		data: () => ({
 			error: false,
 			success: false,

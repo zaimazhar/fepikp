@@ -1,39 +1,52 @@
 <template>
-	<v-card color="blue" class="pa-5">
-		<v-card class="mb-5 mt-3">
-			<v-row class="text-center">
-				<v-col cols="12" sm="2">Nama Program</v-col>
-				<v-col cols="12" sm="2">Tarikh Mula</v-col>
-				<v-col cols="12" sm="2">Tarikh Tamat</v-col>
-				<v-col cols="12" sm="2">Yuran Program</v-col>
-				<v-col cols="12" sm="2">Tempat Program</v-col>
-				<v-col cols="12" sm="2">Tindakan</v-col>
-			</v-row>
-		</v-card>
-		<v-card class="mt-5 mb-3">
-			<v-row
-				class="text-center"
-				v-for="(program, index) in programs"
-				:key="index"
-			>
-				<v-col cols="12" sm="2">{{ program.courseName }}</v-col>
-				<v-col cols="12" sm="2">{{ program.courseStart }}</v-col>
-				<v-col cols="12" sm="2">{{ program.courseEnd }}</v-col>
-				<v-col cols="12" sm="2">{{ program.courseCost }}</v-col>
-				<v-col cols="12" sm="2">{{ program.courseVenue }}</v-col>
-				<v-col cols="12" sm="2">
-          <v-btn class="ma-1" color="primary" v-bind:to="`/dashboard/view/${program.id}`">Lihat</v-btn>
-          <v-btn class="ma-1" color="warning" v-bind:to="`/dashboard/edit/${program.id}`">Sunting</v-btn>
-          <!-- <v-btn class="ma-1" color="red" dark v-bind:to="`/dashboard/delete/${program.id}`">Padam</v-btn> -->
-        </v-col>
-				<v-divider></v-divider>
-			</v-row>
-		</v-card>
-	</v-card>
+	<div>
+		<v-row class="text-center">
+			<v-col cols="12" sm="2">Nama Program</v-col>
+			<v-col cols="12" sm="2">Tarikh Mula</v-col>
+			<v-col cols="12" sm="2">Tarikh Tamat</v-col>
+			<v-col cols="12" sm="2">Yuran Program</v-col>
+			<v-col cols="12" sm="2">Tempat Program</v-col>
+			<v-col cols="12" sm="2">Tindakan</v-col>
+		</v-row>
+		<v-row
+			class="text-center"
+			v-for="(program, index) in programs"
+			:key="index"
+		>
+			<v-col cols="12" sm="2">{{ program.courseName }}</v-col>
+			<v-col cols="12" sm="2">{{ program.courseStart }}</v-col>
+			<v-col cols="12" sm="2">{{ program.courseEnd }}</v-col>
+			<v-col cols="12" sm="2">{{ program.courseCost }}</v-col>
+			<v-col cols="12" sm="2">{{ program.courseVenue }}</v-col>
+			<v-col cols="12" sm="2">
+				<v-btn
+					class="ma-1"
+					color="primary"
+					v-bind:to="`/dashboard/view/${program.id}`"
+					>Lihat</v-btn
+				>
+				<v-btn
+					class="ma-1"
+					color="warning"
+					v-bind:to="`/dashboard/edit/${program.id}`"
+					>Sunting</v-btn
+				>
+				<v-btn
+					class="ma-1"
+					color="red"
+					dark
+					v-bind:to="`/dashboard/delete/${program.id}`"
+					>Padam</v-btn
+				>
+			</v-col>
+			<v-divider></v-divider>
+		</v-row>
+	</div>
 </template>
 
 <script>
 	export default {
+		title: "Laman Utama",
 		data: () => ({
 			programs: [],
 		}),
@@ -56,7 +69,7 @@
 					this.programs = data;
 				});
 
-        console.log(this.programs)
+				console.log(this.programs);
 			},
 		},
 		created() {
