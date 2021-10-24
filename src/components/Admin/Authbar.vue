@@ -1,6 +1,7 @@
 <template>
 	<v-card class="pa-5 text-right">
 		<v-btn dark class="btn mx-1" active-class="btn-active" text>Profil</v-btn>
+		<v-btn dark class="btn mx-1" active-class="btn-active" text>Setting</v-btn>
 		<v-btn dark class="logout mx-1" @click="logout()" text>Log Keluar</v-btn>
 	</v-card>
 </template>
