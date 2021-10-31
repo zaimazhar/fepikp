@@ -17,6 +17,26 @@
 				>
 					<span class="mr-2">{{ link.name }}</span>
 				</v-btn>
+				<v-btn
+					v-if="authState"
+					dark
+					class="btn mx-1 rounded-lg font-weight-black"
+					to="/dashboard"
+					text
+					active-class="btn-active"
+				>
+					<span class="mr-2">Papan Pemuka</span>
+				</v-btn>
+				<v-btn
+					v-else
+					dark
+					class="btn mx-1 rounded-lg font-weight-black"
+					to="/login"
+					text
+					active-class="btn-active"
+				>
+					<span class="mr-2">Log Masuk</span>
+				</v-btn>
 			</div>
 		</v-app-bar>
 		<v-navigation-drawer v-model="drawer" app fixed right temporary>
@@ -39,6 +59,7 @@
 </template>
 
 <script>
+	import { mapGetters } from "vuex";
 	export default {
 		data: () => ({
 			drawer: false,
@@ -55,18 +76,15 @@
 				},
 				{
 					href: "/courses",
-					name: "Daftar Kos",
+					name: "Daftar Kursus",
 				},
 				{
 					href: "/contact",
 					name: "Hubungi Kami",
 				},
-				{
-					href: "/login",
-					name: "Log Masuk",
-				},
 			],
 		}),
+		computed: mapGetters(["authState"]),
 		watch: {
 			group() {
 				this.drawer = false;
@@ -77,9 +95,7 @@
 
 <style scoped>
 	.btn {
-		
 		background-color: #273c75;
-
 	}
 
 	.btn-active {

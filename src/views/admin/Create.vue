@@ -1,7 +1,30 @@
 <template>
 	<div>
 		<v-form @submit="createProgram">
-			<v-text-field outlined label="Nama Program" v-model="courseName"></v-text-field>
+			<v-text-field
+				outlined
+				label="Nama Program"
+				v-model="courseName"
+			></v-text-field>
+			<v-combobox
+				v-model="benefitItems"
+				hide-selected
+				outlined
+				label="Tambah Kemudahan Label"
+				multiple
+				persistent-hint
+				small-chips
+			>
+				<template v-slot:no-data>
+					<v-list-item>
+						<v-list-item-content>
+							<v-list-item-title>
+								Tulis dan tekan <kbd>enter</kbd> untuk tambah kemudahan terbaru
+							</v-list-item-title>
+						</v-list-item-content>
+					</v-list-item>
+				</template>
+			</v-combobox>
 			<br />
 			<v-row>
 				<v-col cols="12" sm="6">
@@ -111,11 +134,8 @@
 					<br /><br />
 					<v-icon color="blue" size="100"> mdi-check-circle-outline </v-icon
 					><br /><br />
-					<span class="title"
-						>Berjaya Cipta Program
-					</span><br><br>
-					<span class="display-1">{{ courseName }}</span>
-					</v-card-text
+					<span class="title">Berjaya Cipta Program </span><br /><br />
+					<span class="display-1">{{ courseName }}</span> </v-card-text
 				><br />
 				<v-card-actions class="text-center">
 					<v-row justify="center" align="center">
@@ -133,7 +153,7 @@
 					<v-icon color="red" size="100"> mdi-alert-octagon-outline </v-icon
 					><br /><br />
 					<span class="title"
-						>Tidak Berjaya Mencipta Program.<br>Tarikh Tamat Mesti
+						>Tidak Berjaya Mencipta Program.<br />Tarikh Tamat Mesti
 						<strong>Sama</strong> atau <strong>Selepas</strong> Tarikh Mula.
 					</span> </v-card-text
 				><br />
@@ -163,6 +183,7 @@
 			addr2: "",
 			region: "",
 			state: "",
+			benefitItems: [],
 			date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
 				.toISOString()
 				.substr(0, 10),
@@ -191,6 +212,7 @@
 							courseStart: new Date(this.courseStartDate).toISOString(),
 							courseEnd: new Date(this.courseEndDate).toISOString(),
 							courseCost: this.courseCost,
+							courseBenefits: this.benefitItems,
 							courseVenue: {
 								addr1: this.addr1,
 								addr2: this.addr2,
@@ -201,7 +223,7 @@
 
 						await this.$http.post("/course/create", data);
 
-						this.success = true
+						this.success = true;
 					} catch (err) {
 						console.error(err);
 					}

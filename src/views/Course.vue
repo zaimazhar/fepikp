@@ -13,6 +13,21 @@
 					class="elevation-1"
 					item-class="text-center"
 				>
+					<template v-slot:item.courseName="{ item }">
+						{{ item.courseName }}
+						<v-if></v-if>
+						<span v-if="item.courseBenefits">
+							<v-chip
+								v-for="benefit in item.courseBenefits"
+								color="green"
+								:key="benefit"
+								dark
+								small
+							>
+								{{ benefit.benefits }}
+							</v-chip>
+						</span>
+					</template>
 					<template v-slot:item.id="{ item }">
 						<v-btn
 							@click="setCourseName(item.courseName, item.id)"
@@ -77,7 +92,8 @@
 			this.$http.get("/course").then((courses) => {
 				const data = courses.data;
 				data.map((course) => {
-					course.courseCost = `RM${course.courseCost}`;
+					course.courseCost =
+						course.courseCost === "" ? "-" : `RM${course.courseCost}`;
 					course.courseStart = new Intl.DateTimeFormat("ms-MY").format(
 						new Date(course.courseStart)
 					);

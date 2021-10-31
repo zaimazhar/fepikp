@@ -6,11 +6,17 @@
 			:items="pesertas"
 			class="elevation-5"
 		></v-data-table>
+		<Excel v-bind:datauser="this.pesertas" />
 	</div>
 </template>
 
 <script>
+	import Excel from "../../components/Admin/Excel.vue";
+
 	export default {
+		components: {
+			Excel,
+		},
 		data: () => ({
 			headers: [
 				{ text: "Nama Peserta", value: "participantFullname", align: "center" },
@@ -32,6 +38,14 @@
 						)
 							.filter((data) => data.length > 1)
 							.join(", ");
+
+						if (participant.participantCompany) {
+							participant.participantCompany.companyAddress = Object.values(
+								participant.participantCompany.companyAddress
+							)
+								.filter((data) => data.length > 1)
+								.join(", ");
+						}
 					});
 					this.pesertas = data;
 				})

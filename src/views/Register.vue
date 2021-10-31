@@ -24,6 +24,17 @@
 										color="blue"
 										class="mb-5 black--text"
 									></v-text-field>
+									<v-select
+										outlined
+										light
+										color="blue"
+										v-model="payment"
+										:items="paymentMethod"
+										item-text="name"
+										item-value="value"
+										label="Kaedah Pembayaran"
+									>
+									</v-select>
 								</v-col>
 								<v-col cols="12" md="6">
 									<p class="headline">
@@ -202,6 +213,7 @@
 			ic: "",
 			phone: "",
 			email: "",
+			payment: "",
 			addr1: "",
 			addr2: "",
 			region: "",
@@ -217,6 +229,20 @@
 			companyState: "",
 			companyPostcode: "",
 			id: "",
+			paymentMethod: [
+				{
+					name: "Pembayaran Atas Talian (Online Banking)",
+					value: "ob"
+				},
+				{
+					name: "Cek",
+					value: "ch"
+				},
+				{
+					name: "Pembayaran Melalui ATM",
+					value: "bt"
+				},
+			],
 			negeri: [
 				{ name: "Pulau Pinang", id: 7 },
 				{ name: "Kedah", id: 2 },
@@ -247,8 +273,8 @@
 					{ label: "Alamat Emel", bind: "email", hint: "" },
 				],
 				[
-					{ label: "Alamat 1", bind: "addr1", hint: "" },
-					{ label: "Alamat 2", bind: "addr2", hint: "" },
+					{ label: "Alamat", bind: "addr1", hint: "" },
+					// { label: "Alamat 2", bind: "addr2", hint: "" },
 					// { label: "Poskod", bind: "postcode", hint: "" },
 				],
 			],
@@ -279,8 +305,8 @@
 					{ label: "Untuk Perhatian", bind: "companyAttention", hint: "" },
 				],
 				[
-					{ label: "Alamat 1 Syarikat", bind: "companyAddr1", hint: "" },
-					{ label: "Alamat 2 Syarikat", bind: "companyAddr2", hint: "" },
+					{ label: "Alamat Syarikat", bind: "companyAddr1", hint: "" },
+					// { label: "Alamat 2 Syarikat", bind: "companyAddr2", hint: "" },
 					// { label: "Poskod Syarikat", bind: "companyPostcode", hint: "" },
 				],
 			],
@@ -290,10 +316,10 @@
 			uppercase() {
 				this.fullname = this.fullname.toUpperCase();
 				this.addr1 = this.addr1.toUpperCase();
-				this.addr2 = this.addr2.toUpperCase();
+				// this.addr2 = this.addr2.toUpperCase();
 				this.companyAttention = this.companyAttention.toUpperCase();
 				this.companyAddr1 = this.companyAddr1.toUpperCase();
-				this.companyAddr2 = this.companyAddr2.toUpperCase();
+				// this.companyAddr2 = this.companyAddr2.toUpperCase();
 			},
 			async courseRegister(e) {
 				e.preventDefault();
@@ -304,8 +330,9 @@
 						ic: this.ic,
 						phone: this.phone,
 						email: this.email,
-						addr1: this.addr1,
-						addr2: this.addr2,
+						addr: this.addr1,
+						payment: this.payment,
+						// addr2: this.addr2,
 						postcode: this.postcode,
 						region: this.region,
 						state: this.state,
@@ -317,8 +344,8 @@
 							companyPhone: this.companyPhone,
 							companyEmail: this.companyEmail,
 							companyAttention: this.companyAttention,
-							companyAddr1: this.companyAddr1,
-							companyAddr2: this.companyAddr2,
+							companyAddr: this.companyAddr1,
+							// companyAddr2: this.companyAddr2,
 							companyPostcode: this.companyPostcode,
 							companyRegion: this.companyRegion,
 							companyState: this.companyState,
